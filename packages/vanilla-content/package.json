@@ -1,0 +1,14 @@
+{
+  "name": "vanilla-content",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "serve": "vite"
+  },
+  "devDependencies": {
+    "vite": "^2.2.4",
+    "vite-plugin-windicss": "^0.15.10",
+    "windicss": "^2.5.14"
+  }
+}
