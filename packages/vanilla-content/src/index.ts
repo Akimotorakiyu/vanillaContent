@@ -76,11 +76,16 @@ button.addEventListener("mousedown", (event) => {
         const endContainer = r.endContainer.parentElement.parentElement as HTMLDivElement
 
         const c = r.extractContents()
+
+        
         c.childNodes.forEach((div) => {
-          (div as HTMLDivElement).childNodes.forEach((span) => {
-              (span as HTMLSpanElement).classList.add("font-bold");
-          });
+            (div as HTMLDivElement).childNodes.forEach((span) => {
+                (span as HTMLSpanElement).classList.add("font-bold");
+            });
         });
+        
+        const tl = c.childNodes.item(0).firstChild;
+        const tr = (c.childNodes.item(c.childNodes.length-1) as HTMLDivElement).lastChild;
 
         (startContainer).append(...c.childNodes.item(0).childNodes);
         endContainer.firstChild.before(...(c.childNodes.item(c.childNodes.length-1).childNodes))
@@ -88,8 +93,17 @@ button.addEventListener("mousedown", (event) => {
         c.childNodes.item(0).remove()
         c.childNodes.item(c.childNodes.length-1).remove()
 
+    
+
         r.insertNode(c)
 
+        if (direction===-1) {
+            s.collapse(tl.firstChild,0)
+            s.extend(tr.firstChild,tr.textContent.length)
+        }else{
+            s.collapse(tr.firstChild,tr.textContent.length)
+            s.extend(tl.firstChild,0)
+        }
 
   } else {
     console.error("unkonwn type", c.firstChild, c);
