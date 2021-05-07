@@ -72,12 +72,21 @@ button.addEventListener("mousedown", (event) => {
         })
         r.insertNode(c)
     } else if (c.firstChild instanceof HTMLDivElement) {
+        const startContainer = r.startContainer.parentElement.parentElement as HTMLDivElement
+        const endContainer = r.endContainer.parentElement.parentElement as HTMLDivElement
+
         const c = r.extractContents()
         c.childNodes.forEach((div) => {
           (div as HTMLDivElement).childNodes.forEach((span) => {
               (span as HTMLSpanElement).classList.add("font-bold");
           });
         });
+
+        (startContainer).append(...c.childNodes.item(0).childNodes);
+        endContainer.firstChild.before(...(c.childNodes.item(c.childNodes.length-1).childNodes))
+
+        c.childNodes.item(0).remove()
+        c.childNodes.item(c.childNodes.length-1).remove()
 
         r.insertNode(c)
 
