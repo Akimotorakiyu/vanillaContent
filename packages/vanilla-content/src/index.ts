@@ -59,13 +59,18 @@ button.addEventListener("mousedown", (event) => {
 
     if (direction===-1) {
         s.collapse(spanM.firstChild,0)
-        s.extend(spanM.firstChild,0)
+        s.extend(spanM.firstChild,spanM.textContent.length)
     }else{
         s.collapse(spanM.firstChild,spanM.textContent.length)
-        s.extend(spanM.firstChild,spanM.textContent.length)
+        s.extend(spanM.firstChild,0)
     }
 
   } else if (c.firstChild instanceof HTMLSpanElement) {
+      const c = r.extractContents()
+      c.childNodes.forEach((span)=>{
+          (span as HTMLSpanElement).classList.add("font-bold")
+      })
+      r.insertNode(c)
   } else if (c.firstChild instanceof HTMLDivElement) {
   } else {
     console.error("unkonwn type", c.firstChild, c);
