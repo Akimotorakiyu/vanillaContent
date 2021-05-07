@@ -37,6 +37,11 @@ button.addEventListener("mousedown", (event) => {
   const direction = s.anchorNode===r.startContainer&&s.anchorOffset===r.startOffset?1:-1
   const c = r.cloneContents();
   if (c.firstChild instanceof Text) {
+      // 三段法
+      // 选中全部 -> 在中间
+      // 选中开头 -> 在中间
+      // 选中结尾 -> 在中间
+      // 选中中间 -> 在中间
     const spanL = r.commonAncestorContainer.parentElement.cloneNode() as HTMLSpanElement
     spanL.innerText=""
     const spanM= spanL.cloneNode() as HTMLSpanElement
@@ -60,10 +65,6 @@ button.addEventListener("mousedown", (event) => {
         s.extend(spanM.firstChild,spanM.textContent.length)
     }
 
-    
-    // span.appendChild(c);
-    // span.classList.add("font-bold");
-    // r.insertNode(span);
   } else if (c.firstChild instanceof HTMLSpanElement) {
   } else if (c.firstChild instanceof HTMLDivElement) {
   } else {
