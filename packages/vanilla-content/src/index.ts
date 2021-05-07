@@ -69,9 +69,19 @@ button.addEventListener("mousedown", (event) => {
       const c = r.extractContents()
       c.childNodes.forEach((span)=>{
           (span as HTMLSpanElement).classList.add("font-bold")
-      })
-      r.insertNode(c)
-  } else if (c.firstChild instanceof HTMLDivElement) {
+        })
+        r.insertNode(c)
+    } else if (c.firstChild instanceof HTMLDivElement) {
+        const c = r.extractContents()
+        c.childNodes.forEach((div) => {
+          (div as HTMLDivElement).childNodes.forEach((span) => {
+              (span as HTMLSpanElement).classList.add("font-bold");
+          });
+        });
+
+        r.insertNode(c)
+
+
   } else {
     console.error("unkonwn type", c.firstChild, c);
   }
