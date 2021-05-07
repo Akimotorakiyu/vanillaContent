@@ -7,6 +7,7 @@
     "serve": "vite"
   },
   "devDependencies": {
+    "stylus": "^0.54.8",
     "vite": "^2.2.4",
     "vite-plugin-windicss": "^0.15.10",
     "windicss": "^2.5.14"
